@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Header from "./components/Header";
+import { Leaf, Check, Pill } from "lucide-react";
 import Hero from "./components/Hero";
 import ProductGrid from "./components/ProductGrid";
 import CategoryFilter from "./components/CategoryFilter";
@@ -24,7 +24,6 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-gray-50">
-      <Header />
       <Hero />
 
       <section className="max-w-6xl mx-auto px-4 py-12">
@@ -47,7 +46,7 @@ export default function Home() {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex gap-4">
-              <span className="text-3xl">🌿</span>
+              <Leaf size={40} className="text-green-600 flex-shrink-0" />
               <div>
                 <h4 className="font-bold text-gray-800 mb-2">100% Natural</h4>
                 <p className="text-gray-600">
@@ -56,14 +55,14 @@ export default function Home() {
               </div>
             </div>
             <div className="flex gap-4">
-              <span className="text-3xl">✅</span>
+              <Check size={40} className="text-green-600 flex-shrink-0" />
               <div>
                 <h4 className="font-bold text-gray-800 mb-2">ISO Certified</h4>
                 <p className="text-gray-600">International quality standards</p>
               </div>
             </div>
             <div className="flex gap-4">
-              <span className="text-3xl">🏥</span>
+              <Pill size={40} className="text-blue-600 flex-shrink-0" />
               <div>
                 <h4 className="font-bold text-gray-800 mb-2">FDA Approved</h4>
                 <p className="text-gray-600">Health authority recognition</p>

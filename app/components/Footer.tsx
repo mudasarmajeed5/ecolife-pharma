@@ -33,7 +33,7 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               Email: info@ecolifepharma.pk
               <br />
-              Phone: +92 123 456 7890
+              Phone: 03357777954
               <br />
               Location: Pakistan
             </p>

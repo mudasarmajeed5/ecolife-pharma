@@ -1,3 +1,6 @@
+import { Check } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
 export default function Hero() {
   return (
     <section className="bg-gradient-to-r from-green-500 to-green-700 text-white py-16 px-4">
@@ -10,17 +13,26 @@ export default function Hero() {
           formulations approved by health authorities and trusted by thousands.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <button className="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-green-50 transition">
+          <Button className="bg-white text-green-600 hover:bg-green-50 px-6 py-3 text-base h-auto">
             Shop Now
-          </button>
-          <button className="border-2 border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-green-600 transition">
+          </Button>
+          <Button
+            variant="outline"
+            className="border-2 border-white text-white hover:bg-white hover:text-green-600 px-6 py-3 text-base h-auto"
+          >
             Learn More
-          </button>
+          </Button>
         </div>
-        <div className="grid grid-cols-3 gap-4 mt-12 text-sm">
-          <div>✅ ISO Certified</div>
-          <div>✅ FDA Approved</div>
-          <div>✅ 100% Natural</div>
+        <div className="grid grid-cols-3 gap-4 mt-12 text-sm justify-items-center">
+          <div className="flex items-center gap-2">
+            <Check size={20} /> ISO Certified
+          </div>
+          <div className="flex items-center gap-2">
+            <Check size={20} /> FDA Approved
+          </div>
+          <div className="flex items-center gap-2">
+            <Check size={20} /> 100% Natural
+          </div>
         </div>
       </div>
     </section>
