@@ -6,7 +6,9 @@ export default function Header() {
           <span className="text-2xl">🌿</span>
           <div>
             <h1 className="text-2xl font-bold">EcoLIFE Pharma</h1>
-            <p className="text-sm text-green-100">Natural Healthcare Solutions</p>
+            <p className="text-sm text-green-100">
+              Natural Healthcare Solutions
+            </p>
           </div>
         </div>
         <nav className="hidden md:flex gap-6 items-center">

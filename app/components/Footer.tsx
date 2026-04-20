@@ -5,7 +5,10 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
           <div>
             <h4 className="font-bold mb-4 text-green-400">About Us</h4>
-            <p className="text-gray-400 text-sm">EcoLIFE Pharma - Pakistan's leading herbal pharmaceutical company committed to natural wellness.</p>
+            <p className="text-gray-400 text-sm">
+              EcoLIFE Pharma - Pakistan's leading herbal pharmaceutical company
+              committed to natural wellness.
+            </p>
           </div>
           <div>
             <h4 className="font-bold mb-4 text-green-400">Categories</h4>
@@ -28,8 +31,10 @@ export default function Footer() {
           <div>
             <h4 className="font-bold mb-4 text-green-400">Contact</h4>
             <p className="text-sm text-gray-400">
-              Email: info@ecolifepharma.pk<br/>
-              Phone: +92 123 456 7890<br/>
+              Email: info@ecolifepharma.pk
+              <br />
+              Phone: +92 123 456 7890
+              <br />
               Location: Pakistan
             </p>
           </div>
