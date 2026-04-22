@@ -1,5 +1,6 @@
 import { Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Hero() {
   return (
@@ -13,12 +14,14 @@ export default function Hero() {
           formulations approved by health authorities and trusted by thousands.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
-          <Button className="bg-white text-green-600 hover:bg-green-50 px-6 py-3 text-base h-auto">
-            Shop Now
-          </Button>
+          <Link href="/products">
+            <Button className="bg-white text-green-600 hover:bg-green-50 font-semibold px-8 py-3 h-auto text-lg">
+              Shop Now
+            </Button>
+          </Link>
           <Button
             variant="outline"
-            className="border-2 border-white text-white hover:bg-white hover:text-green-600 px-6 py-3 text-base h-auto"
+            className="border-2 border-white text-black hover:bg-white hover:text-green-600 px-6 py-3 text-base h-auto"
           >
             Learn More
           </Button>

@@ -32,24 +32,30 @@ export default function Header() {
           </div>
         </Link>
         <nav className="hidden md:flex gap-6 items-center">
-          <Button
-            variant="ghost"
-            className="text-white hover:text-green-200 hover:bg-green-700"
-          >
-            Products
-          </Button>
-          <Button
-            variant="ghost"
-            className="text-white hover:text-green-200 hover:bg-green-700"
-          >
-            About
-          </Button>
-          <Button
-            variant="ghost"
-            className="text-white hover:text-green-200 hover:bg-green-700"
-          >
-            Contact
-          </Button>
+          <Link href="/products">
+            <Button
+              variant="ghost"
+              className="text-white hover:text-green-200 hover:bg-green-700"
+            >
+              Products
+            </Button>
+          </Link>
+          <Link href="/about">
+            <Button
+              variant="ghost"
+              className="text-white hover:text-green-200 hover:bg-green-700"
+            >
+              About
+            </Button>
+          </Link>
+          <Link href="/contact">
+            <Button
+              variant="ghost"
+              className="text-white hover:text-green-200 hover:bg-green-700"
+            >
+              Contact
+            </Button>
+          </Link>
           <Button className="bg-white text-green-600 hover:bg-green-50 font-semibold relative">
             <Link href="/cart" className="flex items-center gap-2">
               <ShoppingCart size={20} />

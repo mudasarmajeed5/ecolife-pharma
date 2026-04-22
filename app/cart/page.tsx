@@ -4,7 +4,16 @@ import { useRouter } from "next/navigation";
 import { useCartStore } from "@/app/store/cartStore";
 import { toast } from "sonner";
 import { getIcon } from "@/app/utils/getIcon";
-import { ShoppingCart, Check, Pill, Leaf, Plus, Minus, X } from "lucide-react";
+import {
+  ShoppingCart,
+  Check,
+  Pill,
+  Leaf,
+  Plus,
+  Minus,
+  Trash2,
+  ArrowLeft,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -58,8 +67,9 @@ export default function CartPage() {
             </p>
             <Button
               onClick={() => router.push("/")}
-              className="bg-green-600 hover:bg-green-700 px-8 py-3 text-lg h-auto"
+              className="bg-green-600 hover:bg-green-700 px-8 py-3 text-lg h-auto flex items-center gap-2"
             >
+              <ArrowLeft size={20} />
               Continue Shopping
             </Button>
           </Card>
@@ -80,85 +90,90 @@ export default function CartPage() {
               {items.map((item, idx) => (
                 <div
                   key={item.id}
-                  className={`p-6 flex gap-6 items-start ${
+                  className={`p-6 flex gap-6 items-start justify-between ${
                     idx !== items.length - 1 ? "border-b" : ""
                   }`}
                 >
-                  {/* Product Image */}
-                  <div className="bg-green-50 p-4 rounded-lg w-20 h-20 flex items-center justify-center flex-shrink-0">
-                    {getIcon(item.image, 32)}
-                  </div>
+                  {/* Product Info Container */}
+                  <div className="flex gap-6 items-start flex-grow">
+                    {/* Product Image */}
+                    <div className="bg-green-50 p-4 rounded-lg w-20 h-20 flex items-center justify-center flex-shrink-0">
+                      {getIcon(item.image, 32)}
+                    </div>
 
-                  {/* Product Details */}
-                  <div className="flex-grow">
-                    <h3 className="text-lg font-bold text-gray-900 mb-2">
-                      {item.name}
-                    </h3>
-                    <p className="text-green-600 font-bold mb-4">
-                      ₨{item.price.toLocaleString()}
-                    </p>
+                    {/* Product Details */}
+                    <div className="flex-grow">
+                      <h3 className="text-lg font-bold text-gray-900 mb-2">
+                        {item.name}
+                      </h3>
+                      <p className="text-green-600 font-bold mb-4">
+                        ₨{item.price.toLocaleString()}
+                      </p>
 
-                    {/* Quantity Control */}
-                    <div className="flex items-center gap-2 mb-4">
-                      <label className="text-sm font-semibold text-gray-700 mr-2">
-                        Qty:
-                      </label>
-                      <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            handleUpdateQuantity(item.id, item.quantity - 1)
-                          }
-                          className="hover:bg-gray-100 p-1 h-8 w-8"
-                        >
-                          <Minus size={16} />
-                        </Button>
-                        <Input
-                          type="number"
-                          value={item.quantity}
-                          onChange={(e) =>
-                            handleUpdateQuantity(
-                              item.id,
-                              parseInt(e.target.value) || 1,
-                            )
-                          }
-                          className="w-10 border-0 text-center py-1 font-semibold focus:ring-0"
-                          min="1"
-                        />
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() =>
-                            handleUpdateQuantity(item.id, item.quantity + 1)
-                          }
-                          className="hover:bg-gray-100 p-1 h-8 w-8"
-                        >
-                          <Plus size={16} />
-                        </Button>
+                      {/* Quantity Control */}
+                      <div className="flex items-center gap-3 mb-4">
+                        <label className="text-sm font-semibold text-gray-700">
+                          Qty:
+                        </label>
+                        <div className="flex items-center gap-0 border-2 border-gray-300 rounded-lg">
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() =>
+                              handleUpdateQuantity(item.id, item.quantity - 1)
+                            }
+                            className="rounded-none text-gray-600 hover:bg-gray-100 h-9 w-9"
+                          >
+                            <Minus size={18} />
+                          </Button>
+                          <div className="border-l border-r px-4 h-9 flex items-center justify-center bg-white bg-transparent">
+                            <Input
+                              type="number"
+                              value={item.quantity}
+                              onChange={(e) =>
+                                handleUpdateQuantity(
+                                  item.id,
+                                  parseInt(e.target.value) || 1,
+                                )
+                              }
+                              className="border-0 text-center font-bold bg-transparent w-8 focus:ring-0 p-0"
+                              min="1"
+                            />
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={() =>
+                              handleUpdateQuantity(item.id, item.quantity + 1)
+                            }
+                            className="rounded-none text-gray-600 hover:bg-gray-100 h-9 w-9"
+                          >
+                            <Plus size={18} />
+                          </Button>
+                        </div>
+                      </div>
+
+                      {/* Subtotal */}
+                      <div>
+                        <p className="text-sm text-gray-600">
+                          Subtotal:{" "}
+                          <span className="font-bold text-gray-900">
+                            ₨{(item.price * item.quantity).toLocaleString()}
+                          </span>
+                        </p>
                       </div>
                     </div>
-
-                    {/* Subtotal */}
-                    <div className="flex-grow">
-                      <p className="text-sm text-gray-600">
-                        Subtotal:{" "}
-                        <span className="font-bold text-gray-900">
-                          ₨{(item.price * item.quantity).toLocaleString()}
-                        </span>
-                      </p>
-                    </div>
-
-                    {/* Remove Button */}
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => handleRemoveItem(item.id, item.name)}
-                      className="text-red-500 hover:text-red-700 hover:bg-red-50"
-                    >
-                      <X size={20} />
-                    </Button>
                   </div>
+
+                  {/* Remove Button - Right Aligned */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => handleRemoveItem(item.id, item.name)}
+                    className="text-red-500 hover:text-red-700 hover:bg-red-50 flex-shrink-0"
+                  >
+                    <Trash2 size={20} />
+                  </Button>
                 </div>
               ))}
             </Card>
@@ -166,10 +181,13 @@ export default function CartPage() {
             {/* Continue Shopping */}
             <Button
               variant="ghost"
+              size="icon"
               onClick={() => router.push("/")}
-              className="mt-6 text-green-600 hover:text-green-700 hover:bg-green-50"
+              className="mt-6 text-green-600 flex gap-2 ml-20 text-md hover:text-green-700 hover:bg-green-50"
+              title="Continue Shopping"
             >
-              ← Continue Shopping
+              <ArrowLeft size={24} />
+              <span>Continue Shopping</span>
             </Button>
           </div>
 

@@ -72,105 +72,110 @@ export default function ProductDetail({
       <div className="max-w-6xl mx-auto px-4">
         <Button
           variant="ghost"
-          onClick={() => router.push("/")}
+          onClick={() => router.push("/products")}
           className="mb-8 text-green-600 hover:text-green-700 hover:bg-green-50"
         >
           <ArrowLeft size={20} className="mr-2" />
           Back to Products
         </Button>
 
-        <Card className="overflow-hidden border-0 shadow-lg">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
-            {/* Product Image */}
-            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-12 flex items-center justify-center h-full">
+        {/* Main Product Card - Amazon/Alibaba Style */}
+        <Card className="border-0 shadow-lg p-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+            {/* Left: Product Image */}
+            <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-12 flex items-center justify-center min-h-96">
               <div className="text-center">
-                <div className="text-9xl mb-4 flex justify-center">
+                <div className="text-9xl mb-6 flex justify-center">
                   {getIcon(product.icon, 96)}
                 </div>
-                <Badge className="bg-green-200 text-green-800 hover:bg-green-300">
+                <Badge className="bg-green-200 text-green-800 hover:bg-green-300 text-sm px-3 py-1">
                   {product.category}
                 </Badge>
               </div>
             </div>
 
-            {/* Product Info */}
-            <div className="flex flex-col justify-between">
-              <div>
-                <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                  {product.name}
-                </h1>
-                <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                  {product.description}
+            {/* Right: Product Details */}
+            <div className="flex flex-col justify-start">
+              <h1 className="text-2xl font-bold text-gray-900 mb-3">
+                {product.name}
+              </h1>
+
+              <p className="text-gray-600 text-base mb-4 leading-relaxed">
+                {product.description}
+              </p>
+
+              {/* Price Section */}
+              <div className="mb-6 pb-6 border-b border-gray-200">
+                <p className="text-gray-600 text-xs font-semibold mb-2">
+                  Price
                 </p>
+                <p className="text-3xl font-bold text-green-600">
+                  ₨{product.price.toLocaleString()}
+                </p>
+              </div>
 
-                {/* Price */}
-                <div className="mb-8">
-                  <p className="text-gray-600 text-sm font-medium mb-2">
-                    Price
-                  </p>
-                  <p className="text-5xl font-bold text-green-600">
-                    ₨{product.price.toLocaleString()}
-                  </p>
-                </div>
+              {/* Form */}
+              <div className="mb-6 pb-6 border-b border-gray-200">
+                <p className="text-gray-600 text-xs font-semibold mb-2">
+                  Product Form
+                </p>
+                <p className="text-base font-semibold text-gray-800">
+                  {product.form}
+                </p>
+              </div>
 
-                {/* Form */}
-                <div className="mb-8 pb-8 border-b border-gray-200">
-                  <p className="text-gray-600 text-sm font-medium mb-2">
-                    Product Form
-                  </p>
-                  <p className="text-lg font-semibold text-gray-800">
-                    {product.form}
-                  </p>
-                </div>
-
-                {/* Quantity Selector */}
-                <div className="mb-8">
-                  <label className="block text-gray-700 font-semibold mb-4">
+              {/* Quantity & Add to Cart */}
+              <div className="mb-6 flex items-center gap-3">
+                <div>
+                  <label className="block text-gray-700 font-semibold text-sm mb-2">
                     Quantity
                   </label>
-                  <div className="flex items-center gap-2 border border-gray-300 rounded-lg w-fit p-1">
+                  <div className="flex items-center gap-0 border-2 border-gray-300 rounded-lg w-fit">
                     <Button
                       variant="ghost"
-                      size="sm"
+                      size="icon"
                       onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                      className="hover:bg-gray-100"
+                      className="rounded-none text-gray-600 hover:bg-gray-100 h-10 w-10"
                     >
                       <Minus size={18} />
                     </Button>
-                    <Input
-                      type="number"
-                      value={quantity}
-                      onChange={(e) =>
-                        setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-                      }
-                      className="w-16 border-0 text-center font-semibold focus:ring-0"
-                      min="1"
-                    />
+                    <div className="border-l border-r border-gray-300 px-4 h-10 flex items-center justify-center">
+                      <Input
+                        type="number"
+                        value={quantity}
+                        onChange={(e) =>
+                          setQuantity(
+                            Math.max(1, parseInt(e.target.value) || 1),
+                          )
+                        }
+                        className="border-0 text-center font-bold text-base w-10 focus:ring-0 p-0"
+                        min="1"
+                      />
+                    </div>
                     <Button
                       variant="ghost"
-                      size="sm"
+                      size="icon"
                       onClick={() => setQuantity(quantity + 1)}
-                      className="hover:bg-gray-100"
+                      className="rounded-none text-gray-600 hover:bg-gray-100 h-10 w-10"
                     >
                       <Plus size={18} />
                     </Button>
                   </div>
                 </div>
+
+                <Button
+                  onClick={handleAddToCart}
+                  className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded-lg font-bold text-base h-10 flex items-center gap-2"
+                >
+                  <ShoppingCart size={20} />
+                  Add to Cart
+                </Button>
               </div>
-
-              {/* Add to Cart Button */}
-              <Button
-                onClick={handleAddToCart}
-                className="w-full bg-green-600 hover:bg-green-700 text-white px-6 py-4 rounded-lg font-bold text-lg mb-4 flex items-center justify-center gap-2 h-12"
-              >
-                <ShoppingCart size={20} />
-                Add to Cart
-              </Button>
-
+25
               {/* Trust Badges */}
-              <div className="bg-blue-50 p-4 rounded-lg flex items-center gap-3">
+              <div className="bg-blue-50 p-3 rounded-lg flex items-center gap-2 border border-blue-200">
                 <Check size={20} className="text-green-600 flex-shrink-0" />
-                <span className="text-sm text-blue-900">
+                <span className="text-sm text-gray-900">
                   <strong>ISO Certified</strong> • FDA Approved • 100% Natural
                 </span>
               </div>
@@ -178,41 +183,37 @@ export default function ProductDetail({
           </div>
         </Card>
 
-        {/* Details Sections */}
-        <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Below: Benefits & Details Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           {/* Benefits */}
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Benefits</h2>
-            <ul className="space-y-4">
+          <Card className="p-6 border-0 shadow-lg">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">Benefits</h2>
+            <ul className="space-y-3">
               {product.benefits.map((benefit, idx) => (
-                <li key={idx} className="flex items-start gap-3">
+                <li key={idx} className="flex items-start gap-2">
                   <Check
-                    size={24}
-                    className="text-green-600 flex-shrink-0 mt-1"
+                    size={20}
+                    className="text-green-600 flex-shrink-0 mt-0.5"
                   />
-                  <span className="text-gray-700 leading-relaxed">
-                    {benefit}
-                  </span>
+                  <span className="text-gray-700 text-sm">{benefit}</span>
                 </li>
               ))}
             </ul>
           </Card>
 
           {/* Indications */}
-          <Card className="p-8 border-0 shadow-lg">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Indications
+          <Card className="p-6 border-0 shadow-lg">
+            <h2 className="text-lg font-bold text-gray-900 mb-4">
+              Medical Indications
             </h2>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {product.indications.map((indication, idx) => (
-                <li key={idx} className="flex items-start gap-3">
+                <li key={idx} className="flex items-start gap-2">
                   <Pill
-                    size={24}
-                    className="text-blue-600 flex-shrink-0 mt-1"
+                    size={20}
+                    className="text-blue-600 flex-shrink-0 mt-0.5"
                   />
-                  <span className="text-gray-700 leading-relaxed">
-                    {indication}
-                  </span>
+                  <span className="text-gray-700 text-sm">{indication}</span>
                 </li>
               ))}
             </ul>
@@ -220,15 +221,15 @@ export default function ProductDetail({
         </div>
 
         {/* Composition */}
-        <Card className="mt-8 p-8 border-0 shadow-lg">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Composition</h2>
+        <Card className="p-6 border-0 shadow-lg mb-8">
+          <h2 className="text-lg font-bold text-gray-900 mb-4">Composition</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             {product.composition.map((item, idx) => (
               <div
                 key={idx}
-                className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border border-green-200 hover:shadow-md transition"
+                className="bg-gradient-to-br from-green-50 to-green-100 p-4 rounded-lg border-2 border-green-200 hover:shadow-md transition"
               >
-                <p className="text-gray-800 font-semibold">{item}</p>
+                <p className="text-gray-900 font-semibold text-base">{item}</p>
               </div>
             ))}
           </div>
@@ -236,9 +237,11 @@ export default function ProductDetail({
 
         {/* Usage */}
         {product.usage && (
-          <Card className="mt-8 p-8 border-0 shadow-lg bg-amber-50">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Usage</h2>
-            <p className="text-gray-700 text-lg leading-relaxed">
+          <Card className="p-6 border-0 shadow-lg bg-amber-50 border-2 border-amber-200">
+            <h2 className="text-lg font-bold text-gray-900 mb-3">
+              Usage Instructions
+            </h2>
+            <p className="text-gray-700 text-sm leading-relaxed">
               {product.usage}
             </p>
           </Card>
