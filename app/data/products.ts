@@ -17,7 +17,7 @@ export const products: Product[] = [
     id: "1",
     name: "Arq E Ghulab",
     category: "Eye Care",
-    price: 899,
+    price: 125, // Updated: matched to "Arq-e-Gulab Spray" S.No 8, MRP 125
     image: "/products/arq e ghulab.jpeg",
     description:
       "Comprehensive herbal eye care solution for vision enhancement and eye health maintenance",
@@ -50,7 +50,7 @@ export const products: Product[] = [
     id: "3",
     name: "Herimor Powder",
     category: "Nutritional",
-    price: 749,
+    price: 400, // Updated: matched to "Eco's Herimore (Moringa Powder) Jar" S.No 10, MRP 400
     image: "/products/herimor powder.jpeg",
     description:
       "Multivitamin and mineral supplement in capsule form for vital health maintenance",
@@ -74,7 +74,7 @@ export const products: Product[] = [
     id: "4",
     name: "Safa Gel",
     category: "Pain Relief",
-    price: 499,
+    price: 140, // Updated: matched to "Safa gel Tube" S.No 48, MRP 140
     image: "/products/safa gel.jpeg",
     description:
       "Natural pain relief and wellness gel with anti-inflammatory properties",
@@ -100,7 +100,7 @@ export const products: Product[] = [
     id: "5",
     name: "Safoof e Thandak",
     category: "Blood Purification",
-    price: 349,
+    price: 250, // Updated: matched to "Safoof-e-Thandak" S.No 19, MRP 250
     image: "/products/safoof e thandak.jpeg",
     description:
       "Traditional blood purification and detoxification syrup for skin health and wellness",
@@ -133,7 +133,7 @@ export const products: Product[] = [
     id: "6",
     name: "Thundai Syrup",
     category: "Cold & Cough",
-    price: 299,
+    price: 230, // Updated: matched to "Sharbat Thundani" S.No 22, MRP 230
     image: "/products/thundai syrup.jpeg",
     description:
       "Herbal remedy for cough and cold relief with throat soothing properties",
@@ -169,7 +169,7 @@ export const products: Product[] = [
     id: "7",
     name: "Krack Cream",
     category: "Skin Care",
-    price: 399,
+    price: 150, // Updated: matched to "Krack Cream" S.No 47, MRP 150
     image: "/products/krack cream.jpeg",
     description:
       "Specialized skin healing cream for cracked skin and fissure treatment",
@@ -199,7 +199,7 @@ export const products: Product[] = [
     id: "8",
     name: "Plyox Piles Reliver",
     category: "Digestive",
-    price: 449,
+    price: 300, // Updated: matched to "Pylox Capsules 30's" S.No 32, MRP 300
     image: "/products/plyox.jpeg",
     description:
       "Digestive health and nutritional support capsule for energy restoration",
@@ -229,7 +229,7 @@ export const products: Product[] = [
     id: "9",
     name: "Morgina",
     category: "Skin Care",
-    price: 379,
+    price: 379, // UNCHANGED: no confident match found in price list
     image: "/products/morgina.jpeg",
     description:
       "Joint and skin care cream for pain relief and crack healing with anti-inflammatory properties",
@@ -261,7 +261,7 @@ export const products: Product[] = [
     id: "10",
     name: "Ecofer Syrup",
     category: "Nutritional",
-    price: 599,
+    price: 230, // Updated: matched to "Ecofer syp" S.No 42, MRP 230
     image: "/products/ecofer syrup.jpeg",
     description:
       "Health supplement in oil and syrup formulation for enhanced nutritional support",
@@ -283,7 +283,7 @@ export const products: Product[] = [
     id: "11",
     name: "Arq e Ghulab",
     category: "Nutritional",
-    price: 499,
+    price: 499, // UNCHANGED: could not confidently distinguish from id "1" in price list
     image: "/products/arq e ghulab syrup.jpeg",
     description:
       "Herbal nutritional support supplement for energy and health maintenance",
@@ -309,7 +309,7 @@ export const products: Product[] = [
     id: "12",
     name: "Hazmoo Kalwanji",
     category: "Nutritional",
-    price: 349,
+    price: 349, // UNCHANGED: no confident match found in price list
     image: "/products/hazmoo.jpeg",
     description:
       "Natural herbal nutritional supplement for overall wellness and health support",
@@ -336,7 +336,7 @@ export const products: Product[] = [
     id: "13",
     name: "White Rose Syrup",
     category: "Beverages",
-    price: 249,
+    price: 370, // Updated: matched to "White Rose syp (Homeo)" S.No 25, MRP 370
     image: "/products/white rose syrup.jpeg",
     description:
       "Refreshing herbal syrup beverage with natural flavoring for thirst quenching and wellness",
@@ -356,7 +356,7 @@ export const products: Product[] = [
     id: "14",
     name: "Plyox (capsules)",
     category: "Nutritional",
-    price: 429,
+    price: 280, // Updated: matched to "Pylox Capsules 20's" S.No 31, MRP 280
     image: "/products/plyox capsules.jpeg",
     description:
       "Encapsulated herbal blend for general wellness and therapeutic herbal therapy support",
@@ -379,7 +379,7 @@ export const products: Product[] = [
     id: "15",
     name: "Podeena Sharbat",
     category: "Nutritional",
-    price: 369,
+    price: 369, // UNCHANGED: could not confidently match to a specific Podeena variant
     image: "/products/podeena.jpeg",
     description:
       "Licorice-based herbal wellness product with traditional remedy benefits for health maintenance",
@@ -401,7 +401,7 @@ export const products: Product[] = [
     id: "16",
     name: "Respolite Syrup",
     category: "Nutritional",
-    price: 299,
+    price: 230, // Updated: matched to "Respolite Syp" S.No 46, MRP 230
     image: "/products/repsolite syrup.jpeg",
     description:
       "Traditional herbal preparation tablet for natural health supplementation and wellness",
