@@ -97,8 +97,16 @@ export default function CartPage() {
                   {/* Product Info Container */}
                   <div className="flex gap-6 items-start flex-grow">
                     {/* Product Image */}
-                    <div className="bg-green-50 p-4 rounded-lg w-20 h-20 flex items-center justify-center flex-shrink-0">
-                      {getIcon(item.image, 32)}
+                    <div className="bg-white p-0 rounded-lg w-20 h-20 flex items-center justify-center flex-shrink-0 border overflow-hidden">
+                      {item.image && item.image.startsWith("/") ? (
+                        <img
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        getIcon(item.image, 32)
+                      )}
                     </div>
 
                     {/* Product Details */}

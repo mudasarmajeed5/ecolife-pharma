@@ -8,7 +8,7 @@ export interface Product {
   composition: string[];
   description: string;
   form: string;
-  image?: string,
+  image?: string;
   indications: string[];
   usage?: string;
 }
@@ -20,6 +20,7 @@ export const products: Product[] = [
     category: "Eye Care",
     price: 899,
     icon: "Eye",
+    image: "/products/arq e ghulab.jpeg",
     description:
       "Comprehensive herbal eye care solution for vision enhancement and eye health maintenance",
     form: "Herbal remedy",
@@ -48,44 +49,12 @@ export const products: Product[] = [
     usage: "Take as directed for comprehensive eye care",
   },
   {
-    id: "2",
-    name: "HERBAL POWER TABLET",
-    category: "Nutritional",
-    price: 599,
-    icon: "Zap",
-    description:
-      "Advanced herbal nutritional supplement with vitamins and minerals for overall wellness",
-    form: "Tablet (20 tablets per pack)",
-    benefits: [
-      "Energy booster",
-      "Immune system support",
-      "Antioxidant protection",
-      "Nutritional supplementation",
-      "General wellness enhancement",
-    ],
-    composition: [
-      "Zinc Gluconate (API): 5mg",
-      "Curcuma longa (Turmeric): 50mg",
-      "Beta Carotene (API): 0.5mg",
-      "Vitamin E: 0.8mg",
-      "Vitamin C: 40mg",
-      "Biotin: 37.5mg",
-      "Folic Acid: 88mg",
-      "Calcium Pantothenate: 12mg",
-      "Magnesium Citrate: 37.5mg",
-    ],
-    indications: [
-      "Daily nutritional support",
-      "Energy enhancement",
-      "Immune boost",
-    ],
-  },
-  {
     id: "3",
     name: "ECO VITAL KS",
     category: "Nutritional",
     price: 749,
     icon: "Beaker",
+    image: "/products/herimor powder.jpeg",
     description:
       "Multivitamin and mineral supplement in capsule form for vital health maintenance",
     form: "Capsule",
@@ -110,6 +79,7 @@ export const products: Product[] = [
     category: "Pain Relief",
     price: 499,
     icon: "Droplet",
+    image: "/products/safa gel.jpeg",
     description:
       "Natural pain relief and wellness gel with anti-inflammatory properties",
     form: "Gel (Spray and Cream variants available)",
@@ -136,6 +106,7 @@ export const products: Product[] = [
     category: "Blood Purification",
     price: 349,
     icon: "Droplet",
+    image: "/products/safoof e thandak.jpeg",
     description:
       "Traditional blood purification and detoxification syrup for skin health and wellness",
     form: "Syrup",
@@ -169,6 +140,7 @@ export const products: Product[] = [
     category: "Cold & Cough",
     price: 299,
     icon: "Wind",
+    image: "/products/thundai syrup.jpeg",
     description:
       "Herbal remedy for cough and cold relief with throat soothing properties",
     form: "Herbal remedy/Tea formulation",
@@ -205,6 +177,7 @@ export const products: Product[] = [
     category: "Skin Care",
     price: 399,
     icon: "Droplet",
+    image: "/products/krack cream.jpeg",
     description:
       "Specialized skin healing cream for cracked skin and fissure treatment",
     form: "Cream (2 variants)",
@@ -235,6 +208,7 @@ export const products: Product[] = [
     category: "Digestive",
     price: 449,
     icon: "Leaf",
+    image: "/products/plyox.jpeg",
     description:
       "Digestive health and nutritional support capsule for energy restoration",
     form: "Capsule (10, 20, 30 capsules per pack)",
@@ -258,5 +232,212 @@ export const products: Product[] = [
       "Appetite enhancement",
     ],
     usage: "Take as directed for digestive and nutritional support",
+  },
+  {
+    id: "9",
+    name: "SAFACRACK CREAM",
+    category: "Skin Care",
+    price: 379,
+    icon: "Droplet",
+    image: "/products/morgina.jpeg",
+    description:
+      "Joint and skin care cream for pain relief and crack healing with anti-inflammatory properties",
+    form: "Cream",
+    benefits: [
+      "Joint pain relief",
+      "Crack healing",
+      "Skin conditioning",
+      "Anti-inflammatory action",
+      "Cracks and fissures healing",
+      "Joint support",
+      "Topical pain relief",
+      "Skin nourishment",
+    ],
+    composition: [
+      "Mixed aromatic oils",
+      "Healing compounds",
+      "Natural moisturizers",
+    ],
+    indications: [
+      "Joint pain",
+      "Cracked skin",
+      "Skin healing",
+      "Anti-inflammatory support",
+    ],
+    usage: "Apply topically as directed for pain relief and healing",
+  },
+  {
+    id: "10",
+    name: "ECO VITKS",
+    category: "Nutritional",
+    price: 599,
+    icon: "Beaker",
+    image: "/products/ecofer syrup.jpeg",
+    description:
+      "Health supplement in oil and syrup formulation for enhanced nutritional support",
+    form: "Oil/Syrup formulation",
+    benefits: [
+      "Nutritional enhancement",
+      "Health maintenance",
+      "Body system support",
+      "Wellness promotion",
+    ],
+    composition: [
+      "Herbal extract blend",
+      "Natural oils",
+      "Nutritive ingredients",
+    ],
+    indications: ["Nutritional gaps", "Health maintenance", "General wellness"],
+  },
+  {
+    id: "11",
+    name: "SAFHOOD-ETABA",
+    category: "Nutritional",
+    price: 499,
+    icon: "Leaf",
+    image: "/products/arq e ghulab syrup.jpeg",
+    description:
+      "Herbal nutritional support supplement for energy and health maintenance",
+    form: "Herbal supplement",
+    benefits: [
+      "Nutritional supplementation",
+      "Energy support",
+      "General health maintenance",
+      "Body wellness",
+    ],
+    composition: [
+      "Herbal extract blend",
+      "Nutritive ingredients",
+      "Natural herbs",
+    ],
+    indications: [
+      "Nutritional gaps",
+      "Energy restoration",
+      "Health maintenance",
+    ],
+  },
+  {
+    id: "12",
+    name: "ZATOONI",
+    category: "Nutritional",
+    price: 349,
+    icon: "Zap",
+    image: "/products/hazmoo.jpeg",
+    description:
+      "Natural herbal nutritional supplement for overall wellness and health support",
+    form: "Tablet formulation",
+    benefits: [
+      "Nutritional support",
+      "General wellness",
+      "Herbal health benefits",
+      "Body revitalization",
+    ],
+    composition: [
+      "Natural herbal extract",
+      "Nutritive elements",
+      "Plant-based ingredients",
+    ],
+    indications: [
+      "Nutritional supplement",
+      "General wellness",
+      "Health maintenance",
+    ],
+    usage: "Take as directed for nutritional support",
+  },
+  {
+    id: "13",
+    name: "ARBINA (ALSAINI)",
+    category: "Beverages",
+    price: 249,
+    icon: "Droplet",
+    image: "/products/white rose syrup.jpeg",
+    description:
+      "Refreshing herbal syrup beverage with natural flavoring for thirst quenching and wellness",
+    form: "Syrup/Drink concentrate",
+    benefits: [
+      "Thirst quenching",
+      "Natural ingredients",
+      "Pleasant taste",
+      "Refreshment beverage",
+      "Natural drink alternative",
+    ],
+    composition: ["Natural flavoring", "Herbal extracts", "Sugar content"],
+    indications: ["Refreshment", "Natural beverage", "Wellness drink"],
+    usage: "Mix with water as directed for refreshing beverage",
+  },
+  {
+    id: "14",
+    name: "ECO-LIOSET CAPSULES",
+    category: "Nutritional",
+    price: 429,
+    icon: "Leaf",
+    image: "/products/plyox capsules.jpeg",
+    description:
+      "Encapsulated herbal blend for general wellness and therapeutic herbal therapy support",
+    form: "Capsule (20 capsules per pack)",
+    benefits: [
+      "General wellness support",
+      "Herbal therapy support",
+      "Body system support",
+      "Natural health enhancement",
+    ],
+    composition: [
+      "Encapsulated herbal blend",
+      "Therapeutic herbs",
+      "Natural plant extracts",
+    ],
+    indications: ["General wellness", "Herbal therapy", "Health maintenance"],
+    usage: "Take as directed for wellness support",
+  },
+  {
+    id: "15",
+    name: "LICOSET",
+    category: "Nutritional",
+    price: 369,
+    icon: "Leaf",
+    image: "/products/podeena.jpeg",
+    description:
+      "Licorice-based herbal wellness product with traditional remedy benefits for health maintenance",
+    form: "Herbal formulation",
+    benefits: [
+      "Herbal wellness support",
+      "Traditional remedy benefits",
+      "Health maintenance",
+      "Body system support",
+    ],
+    composition: [
+      "Licorice-based formulation",
+      "Natural herbal extract",
+      "Plant-based ingredients",
+    ],
+    indications: ["Wellness support", "Health maintenance", "General wellness"],
+  },
+  {
+    id: "16",
+    name: "TABLEENA",
+    category: "Nutritional",
+    price: 299,
+    icon: "Zap",
+    image: "/products/repsolite syrup.jpeg",
+    description:
+      "Traditional herbal preparation tablet for natural health supplementation and wellness",
+    form: "Tablet formulation",
+    benefits: [
+      "Natural health supplement",
+      "Traditional herbal benefits",
+      "General wellness support",
+      "Body system support",
+    ],
+    composition: [
+      "Traditional herbal blend",
+      "Nutritive elements",
+      "Plant-based ingredients",
+    ],
+    indications: [
+      "Health supplementation",
+      "General wellness",
+      "Health maintenance",
+    ],
+    usage: "Take as directed for health supplementation",
   },
 ];

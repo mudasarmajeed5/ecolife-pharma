@@ -39,8 +39,12 @@ export default function AboutPage() {
               supported by scientific research.
             </p>
           </div>
-          <div className="bg-gradient-to-br from-green-50 to-green-100 rounded-xl p-8 h-96 flex items-center justify-center">
-            <Leaf size={128} className="text-green-600 opacity-50" />
+          <div className="bg-white rounded-xl overflow-hidden h-96 w-full">
+            <img
+              src="/products/arq e ghulab.jpeg"
+              alt="EcoLIFE Pharma Product"
+              className="h-full w-full object-cover"
+            />
           </div>
         </div>
       </section>
