@@ -4,7 +4,6 @@ import Link from "next/link";
 import { Product } from "../data/products";
 import { useCartStore } from "../store/cartStore";
 import { toast } from "sonner";
-import { getIcon } from "../utils/getIcon";
 
 interface ProductCardProps {
   product: Product;
@@ -20,7 +19,7 @@ export default function ProductCard({ product }: ProductCardProps) {
       name: product.name,
       price: product.price,
       quantity: 1,
-      image: product.image || product.icon,
+      image: product.image,
     });
     toast.success(`${product.name} added to cart!`, {
       description: `Price: ₨${product.price.toLocaleString()}`,
@@ -31,17 +30,11 @@ export default function ProductCard({ product }: ProductCardProps) {
     <Link href={`/product/${product.id}`}>
       <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow cursor-pointer flex flex-col w-full max-w-xs">
         <div className="w-full h-72 bg-white flex items-center justify-center overflow-hidden">
-          {product.image ? (
-            <img
-              src={product.image}
-              alt={product.name}
-              className="h-full w-full object-cover"
-            />
-          ) : (
-            <div className="text-6xl flex justify-center items-center h-full bg-gray-100">
-              {getIcon(product.icon, 48)}
-            </div>
-          )}
+          <img
+            src={product.image}
+            alt={product.name}
+            className="h-full w-full object-cover"
+          />
         </div>
         <div className="px-4 py-3 bg-white text-left">
           <h3 className="text-lg font-bold text-gray-800">{product.name}</h3>
@@ -49,7 +42,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             {product.category}
           </span>
         </div>
-        <div className="p-4 flex flex-col flex-grow justify-between">
+        <div className="p-4 flex flex-col grow justify-between">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-lg font-bold text-green-600">
