@@ -301,32 +301,60 @@ export default function ProductDetailPage({
 
         {/* Related Products */}
         <div className="mt-16">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8">
+          <Separator className="mb-8" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
             You Might Also Like
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {relatedProducts.map((related) => (
-              <Card key={related.id} className="overflow-hidden group">
-                <Link href={`/product/${related.id}`}>
-                  <CardContent className="p-0">
-                    <div className="bg-gray-50 aspect-square flex items-center justify-center overflow-hidden">
-                      <img
-                        src={related.image}
-                        alt={related.name}
-                        className="h-full w-full object-cover"
-                      />
-                    </div>
-                  </CardContent>
-                  <CardHeader>
-                    <CardTitle className="text-base font-semibold group-hover:text-green-600 transition-colors">
+              <Link
+                key={related.id}
+                href={`/product/${related.id}`}
+                className="group"
+              >
+                <div className="bg-white rounded-lg shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition-all cursor-pointer flex flex-col h-full w-full">
+                  <div className="w-full aspect-square bg-gray-50 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={related.image}
+                      alt={related.name}
+                      className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="px-3 py-2 bg-white text-left">
+                    <h3 className="text-sm font-bold text-gray-800 line-clamp-1">
                       {related.name}
-                    </CardTitle>
-                    <p className="text-lg font-bold text-gray-900">
-                      ₨{related.price.toLocaleString()}
-                    </p>
-                  </CardHeader>
-                </Link>
-              </Card>
+                    </h3>
+                    <span className="inline-block bg-green-200 text-green-800 text-[10px] px-2 py-0.5 rounded-full mt-1">
+                      {related.category}
+                    </span>
+                  </div>
+                  <div className="p-3 pt-0 flex flex-col grow justify-end">
+                    <div className="flex items-center justify-between mt-2">
+                      <p className="text-base font-bold text-green-600">
+                        ₨{related.price.toLocaleString()}
+                      </p>
+                      <button
+                        onClick={(e) => {
+                          e.preventDefault();
+                          addItem({
+                            id: related.id,
+                            name: related.name,
+                            price: related.price,
+                            quantity: 1,
+                            image: related.image,
+                          });
+                          toast.success(`${related.name} added to cart!`, {
+                            description: `Price: ₨${related.price.toLocaleString()}`,
+                          });
+                        }}
+                        className="bg-green-600 text-white px-3 py-1.5 rounded hover:bg-green-700 transition font-semibold text-xs shadow-sm hover:shadow-md"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
