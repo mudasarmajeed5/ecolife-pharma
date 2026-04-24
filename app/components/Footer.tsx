@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-gray-900 text-white py-12">
@@ -45,6 +47,9 @@ export default function Footer() {
             <span>Privacy Policy</span>
             <span>Terms of Service</span>
             <span>Certifications</span>
+            <Link href="/admin" className="hover:text-green-400">
+              Admin
+            </Link>
           </div>
         </div>
       </div>

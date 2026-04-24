@@ -5,7 +5,7 @@ import { sendEmail } from "@/lib/email";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
-  const orderId = searchParams.get("id");
+  const orderIdParam = searchParams.get("id");
   const action = searchParams.get("action");
 
   const renderPage = (title: string, message: string) => `
@@ -25,9 +25,18 @@ export async function GET(req: NextRequest) {
     </html>
   `;
 
-  if (!orderId || !action) {
+  const orderId = Number(orderIdParam);
+
+  if (!orderIdParam || !action) {
     return new Response(
       renderPage("Missing Details", "Order id or action is missing."),
+      { status: 400, headers: { "content-type": "text/html" } },
+    );
+  }
+
+  if (!Number.isFinite(orderId) || orderId <= 0) {
+    return new Response(
+      renderPage("Invalid Order", "The order id is invalid."),
       { status: 400, headers: { "content-type": "text/html" } },
     );
   }

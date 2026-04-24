@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { randomUUID } from "crypto";
 import { connectDB } from "@/lib/db";
 import Order from "@/app/models/Order";
+import Counter from "@/app/models/Counter";
 import { sendEmail } from "@/lib/email";
 
 type CartItemPayload = {
@@ -90,7 +90,12 @@ export async function POST(req: NextRequest) {
       0,
     );
 
-    const orderId = randomUUID();
+    const counter = await Counter.findOneAndUpdate(
+      { name: "order" },
+      { $inc: { seq: 1 } },
+      { new: true, upsert: true },
+    );
+    const orderId = counter.seq;
     const order = await Order.create({
       orderId,
       firstName,

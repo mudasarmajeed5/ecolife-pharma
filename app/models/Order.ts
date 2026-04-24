@@ -9,7 +9,7 @@ interface ICartItem {
 }
 
 export interface IOrder extends Document {
-  orderId: string;
+  orderId: number;
   firstName: string;
   lastName: string;
   customerEmail: string;
@@ -41,7 +41,7 @@ const CartItemSchema = new Schema<ICartItem>(
 
 const OrderSchema = new Schema<IOrder>(
   {
-    orderId: { type: String, required: true, unique: true },
+    orderId: { type: Number, required: true, unique: true },
 
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
