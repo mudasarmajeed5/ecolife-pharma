@@ -57,17 +57,19 @@ export default function CheckoutPage() {
 
   const handleSubmitOrder = async () => {
     if (!validateForm()) return;
-
-    setLoading(true);
-    // Simulate API call
-    setTimeout(() => {
-      toast.success("Order placed successfully!", {
-        description: `Order confirmation sent to ${formData.email}`,
-      });
-      clearCart();
-      router.push("/");
-      setLoading(false);
-    }, 1500);
+    try {
+      const res = await fetch('/api/place-order', {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(formData)
+      })
+      const result = await res.json();
+      console.log(result)
+    } catch (error) {
+      
+    }
   };
 
   if (items.length === 0) {

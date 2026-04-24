@@ -1,7 +1,6 @@
 "use client";
-
 import Link from "next/link";
-import { Leaf, Shield, Zap, Globe } from "lucide-react";
+import { Shield, Zap, Globe } from "lucide-react";
 import Hero from "./components/Hero";
 import Footer from "./components/Footer";
 import { Button } from "@/components/ui/button";
