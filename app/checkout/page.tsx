@@ -7,11 +7,11 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { ArrowLeft, Check, Truck, CalendarDays } from "lucide-react";
+import { ArrowLeft, Check, Truck, CalendarDays, Loader2 } from "lucide-react";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { items, getTotalPrice, getTotalItems, clearCart } = useCartStore();
+  const { items, getTotalPrice, getTotalItems, removeItem } = useCartStore();
   const [loading, setLoading] = useState(false);
 
   // Customer Details
@@ -57,18 +57,26 @@ export default function CheckoutPage() {
 
   const handleSubmitOrder = async () => {
     if (!validateForm()) return;
+    setLoading(true);
     try {
-      const res = await fetch('/api/place-order', {
-        method: "POST", 
+      const res = await fetch("/api/place-order", {
+        method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData)
-      })
+        body: JSON.stringify({ formData, cartItems: items }),
+      });
       const result = await res.json();
-      console.log(result)
+      if (!res.ok) {
+        toast.error(result.message);
+      } else {
+        toast.success(result?.message);
+        router.push("/order-confirmed");
+      }
     } catch (error) {
-      
+      toast.error("An unexpected error occurred.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -257,7 +265,7 @@ export default function CheckoutPage() {
                 <div className="flex items-start gap-4">
                   <Truck
                     size={24}
-                    className="text-green-600 flex-shrink-0 mt-1"
+                    className="text-green-600 shrink-0 mt-1"
                   />
                   <div>
                     <h3 className="font-bold text-gray-900 mb-2">
@@ -347,10 +355,17 @@ export default function CheckoutPage() {
               {/* Place Order Button */}
               <Button
                 onClick={handleSubmitOrder}
+                className="w-full bg-green-600 hover:bg-green-700 text-lg py-6"
                 disabled={loading}
-                className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 h-auto mb-3"
               >
-                {loading ? "Processing..." : "Place Order"}
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-6 w-6 animate-spin" />
+                    Placing Order...
+                  </>
+                ) : (
+                  "Place Order"
+                )}
               </Button>
 
               {/* Info Box */}
@@ -358,7 +373,7 @@ export default function CheckoutPage() {
                 <div className="flex items-start gap-2 mb-2">
                   <Check
                     size={18}
-                    className="text-green-600 flex-shrink-0 mt-0.5"
+                    className="text-green-600 shrink-0 mt-0.5"
                   />
                   <span>
                     <strong>Secure Payment:</strong> Your order is protected
@@ -367,7 +382,7 @@ export default function CheckoutPage() {
                 <div className="flex items-start gap-2">
                   <Check
                     size={18}
-                    className="text-green-600 flex-shrink-0 mt-0.5"
+                    className="text-green-600 shrink-0 mt-0.5"
                   />
                   <span>
                     <strong>Track Your Order:</strong> Get real-time updates
