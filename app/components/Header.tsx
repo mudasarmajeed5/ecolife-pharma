@@ -35,7 +35,7 @@ export default function Header() {
           <Link href="/products">
             <Button
               variant="ghost"
-              className="text-white hover:text-green-200 hover:bg-green-700"
+              className="text-white hover:text-green-200 hover:bg-green-700 uppercase"
             >
               Products
             </Button>
@@ -43,7 +43,7 @@ export default function Header() {
           <Link href="/about">
             <Button
               variant="ghost"
-              className="text-white hover:text-green-200 hover:bg-green-700"
+              className="text-white hover:text-green-200 hover:bg-green-700 uppercase"
             >
               About
             </Button>
@@ -51,12 +51,12 @@ export default function Header() {
           <Link href="/contact">
             <Button
               variant="ghost"
-              className="text-white hover:text-green-200 hover:bg-green-700"
+              className="text-white hover:text-green-200 hover:bg-green-700 uppercase"
             >
               Contact
             </Button>
           </Link>
-          <Button className="bg-white text-green-600 hover:bg-green-50 font-semibold relative">
+          <Button className="bg-white text-green-600 hover:bg-green-50 font-semibold relative uppercase">
             <Link href="/cart" className="flex items-center gap-2">
               <ShoppingCart size={20} />
               Cart
