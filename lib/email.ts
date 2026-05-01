@@ -8,8 +8,8 @@ type EmailPayload = {
 };
 
 const transporter = createTransport({
-  service: "Gmail",
-  host: "smtp.gmail.com",
+  service: "Zoho",
+  host: "smtp.zoho.com",
   port: 465,
   secure: true,
   auth: {
