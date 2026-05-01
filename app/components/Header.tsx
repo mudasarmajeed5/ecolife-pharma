@@ -25,7 +25,7 @@ export default function Header() {
         >
           <Leaf size={28} />
           <div>
-            <h1 className="text-2xl font-bold">EcoLIFE Pharma</h1>
+            <h1 className="text-2xl font-bold">ECOLIFE PHARMA</h1>
             <p className="text-sm text-green-100">
               Natural Healthcare Solutions
             </p>

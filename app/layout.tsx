@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "EcoLIFE Pharma - Natural Healthcare Solutions",
+  title: "ECOLIFE Pharma - Natural Healthcare Solutions",
   description:
     "Premium herbal and nutraceutical products approved by health authorities",
 };

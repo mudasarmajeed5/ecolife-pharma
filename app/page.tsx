@@ -16,10 +16,10 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
           <div>
             <h2 className="text-4xl font-bold text-gray-900 mb-6">
-              About EcoLIFE Pharma
+              About ECOLIFE Pharma
             </h2>
             <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-              Since our inception, EcoLIFE Pharma has been committed to bringing
+              Since our inception, ECOLIFE Pharma has been committed to bringing
               the power of nature to your healthcare. We specialize in premium
               herbal medicines and nutraceuticals that are sourced from the
               finest natural ingredients.
@@ -49,7 +49,7 @@ export default function Home() {
       <section className="bg-green-50 py-16">
         <div className="max-w-6xl mx-auto px-4">
           <h3 className="text-3xl font-bold text-gray-900 mb-12 text-center">
-            Why Choose EcoLIFE Pharma?
+            Why Choose ECOLIFE Pharma?
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="p-8 border-0 shadow-lg">

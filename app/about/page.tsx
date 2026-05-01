@@ -10,7 +10,7 @@ export default function AboutPage() {
       {/* Header */}
       <section className="bg-gradient-to-r from-green-500 to-green-700 text-white py-12">
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">About EcoLIFE Pharma</h1>
+          <h1 className="text-4xl font-bold mb-4">About ECOLIFE Pharma</h1>
           <p className="text-lg text-green-100">
             Pioneering natural healthcare solutions for over a decade
           </p>
@@ -23,7 +23,7 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl font-bold text-gray-900 mb-6">Our Story</h2>
             <p className="text-gray-700 mb-4 leading-relaxed">
-              EcoLIFE Pharma was founded with a simple mission: to bring the
+              ECOLIFE Pharma was founded with a simple mission: to bring the
               healing power of nature to every household. We began as a small
               operation dedicated to researching and developing premium herbal
               medicines.
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="bg-white rounded-xl overflow-hidden h-96 w-full">
             <img
               src="/products/arq e ghulab.jpeg"
-              alt="EcoLIFE Pharma Product"
+              alt="ECOLIFE Pharma Product"
               className="h-full w-full object-cover"
             />
           </div>

@@ -10,7 +10,7 @@ export default function Hero() {
           Natural Health, Naturally
         </h2>
         <p className="text-lg md:text-xl text-green-100 mb-8 max-w-2xl mx-auto">
-          EcoLIFE Pharma brings you research-backed herbal and nutraceutical
+          ECOLIFE Pharma brings you research-backed herbal and nutraceutical
           formulations approved by health authorities and trusted by thousands.
         </p>
         <div className="flex gap-4 justify-center flex-wrap">
