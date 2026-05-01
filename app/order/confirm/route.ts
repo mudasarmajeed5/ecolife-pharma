@@ -1,7 +1,7 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 import { connectDB } from "@/lib/db";
 import Order from "@/app/models/Order";
-import { sendEmail } from "@/lib/email";
+import { buildOrderStatusEmail, sendEmail } from "@/lib/email";
 
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
@@ -67,29 +67,17 @@ export async function GET(req: NextRequest) {
     order.status = status;
     await order.save();
 
+    const statusEmail = buildOrderStatusEmail({
+      status,
+      orderId,
+      firstName: order.firstName,
+    });
+
     void sendEmail({
       to: order.customerEmail,
-      subject: status === "accepted" ? "Order Confirmed" : "Order Rejected",
-      text:
-        status === "accepted"
-          ? "Your order has been confirmed"
-          : "Your order has been rejected",
-      html: `
-        <div style="font-family:Arial,sans-serif;background:#f6f7fb;padding:24px;">
-          <div style="max-width:640px;margin:0 auto;background:#ffffff;border-radius:12px;padding:24px;border:1px solid #e5e7eb;">
-            <h2 style="margin:0 0 12px;color:#111827;">${status === "accepted" ? "Order Confirmed" : "Order Rejected"}</h2>
-            <p style="margin:0 0 16px;color:#374151;">${
-              status === "accepted"
-                ? "Your order has been confirmed. Thank you for shopping with us."
-                : "Your order has been rejected. If you have questions, please contact us."
-            }</p>
-            <div style="background:#f9fafb;border:1px solid #e5e7eb;border-radius:10px;padding:16px;">
-              <p style="margin:0 0 8px;color:#111827;font-weight:600;">Order ID</p>
-              <p style="margin:0;color:#111827;">${orderId}</p>
-            </div>
-          </div>
-        </div>
-      `,
+      subject: statusEmail.subject,
+      text: statusEmail.text,
+      html: statusEmail.html,
     });
   }
 

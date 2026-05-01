@@ -59,6 +59,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [page, setPage] = useState(1);
+  const [activeTab, setActiveTab] = useState<Order["status"]>("pending");
 
   useEffect(() => {
     setSavedPassword(sessionStorage.getItem(STORAGE_KEY));
@@ -67,6 +68,11 @@ export default function AdminPage() {
   const isAuthenticated = useMemo(
     () => Boolean(savedPassword),
     [savedPassword],
+  );
+
+  const filteredOrders = useMemo(
+    () => orders.filter((order) => order.status === activeTab),
+    [orders, activeTab],
   );
 
   const fetchOrders = async (pageNumber: number) => {
@@ -249,104 +255,159 @@ export default function AdminPage() {
         </div>
 
         <Card className="p-6 border-0 shadow-sm">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">Orders</h2>
-            {loading && (
-              <span className="text-sm text-gray-500">Loading...</span>
-            )}
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900">Orders</h2>
+              <p className="text-sm text-gray-500">
+                Browse orders by status and take action quickly.
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {(
+                [
+                  {
+                    key: "pending",
+                    label: "Pending",
+                    count: stats?.pendingCount ?? 0,
+                  },
+                  {
+                    key: "accepted",
+                    label: "Accepted",
+                    count: stats?.acceptedCount ?? 0,
+                  },
+                  {
+                    key: "rejected",
+                    label: "Rejected",
+                    count: stats?.rejectedCount ?? 0,
+                  },
+                ] as const
+              ).map((tab) => (
+                <button
+                  key={tab.key}
+                  type="button"
+                  onClick={() => setActiveTab(tab.key)}
+                  className={`rounded-full border px-4 py-2 text-sm font-semibold transition ${
+                    activeTab === tab.key
+                      ? "border-green-600 bg-green-600 text-white"
+                      : "border-gray-200 bg-white text-gray-600 hover:border-green-200 hover:text-green-700"
+                  }`}
+                >
+                  {tab.label} ({tab.count})
+                </button>
+              ))}
+            </div>
           </div>
 
-          <div className="space-y-4">
-            {orders.map((order) => (
-              <div
-                key={order.orderId}
-                className="border border-gray-200 rounded-lg p-4 bg-white"
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-                  <div>
-                    <p className="text-sm text-gray-500">Order ID</p>
-                    <p className="font-semibold text-gray-900">
-                      {order.orderId}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {new Date(order.createdAt).toLocaleString()}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Customer</p>
-                    <p className="font-semibold text-gray-900">
-                      {order.firstName} {order.lastName}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {order.customerEmail}
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Totals</p>
-                    <p className="font-semibold text-gray-900">
+          {loading && (
+            <div className="mb-4 text-sm text-gray-500">Loading...</div>
+          )}
+
+          <div className="overflow-x-auto rounded-xl border border-gray-100">
+            <table className="min-w-full text-sm">
+              <thead className="bg-gray-50 text-gray-600">
+                <tr>
+                  <th className="text-left px-4 py-3 font-semibold">Order</th>
+                  <th className="text-left px-4 py-3 font-semibold">
+                    Customer
+                  </th>
+                  <th className="text-center px-4 py-3 font-semibold">Items</th>
+                  <th className="text-right px-4 py-3 font-semibold">Total</th>
+                  <th className="text-left px-4 py-3 font-semibold">Status</th>
+                  <th className="text-right px-4 py-3 font-semibold">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {filteredOrders.map((order) => (
+                  <tr key={order.orderId} className="bg-white">
+                    <td className="px-4 py-4">
+                      <div className="font-semibold text-gray-900">
+                        #{order.orderId}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {new Date(order.createdAt).toLocaleString()}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="font-semibold text-gray-900">
+                        {order.firstName} {order.lastName}
+                      </div>
+                      <div className="text-xs text-gray-500">
+                        {order.customerEmail}
+                      </div>
+                      <div className="text-xs text-gray-500">{order.phone}</div>
+                      <div className="text-xs text-gray-500">
+                        {order.address.street}, {order.address.city},{" "}
+                        {order.address.province} {order.address.postalCode}
+                      </div>
+                    </td>
+                    <td className="px-4 py-4 text-center">
+                      {order.totalItems}
+                    </td>
+                    <td className="px-4 py-4 text-right font-semibold text-gray-900">
                       Rs.{order.totalPrice}
-                    </p>
-                    <p className="text-sm text-gray-500">
-                      {order.totalItems} items
-                    </p>
-                  </div>
-                  <div>
-                    <p className="text-sm text-gray-500">Status</p>
-                    <p
-                      className={`font-semibold capitalize ${
-                        order.status === "accepted"
-                          ? "text-green-600"
-                          : order.status === "rejected"
-                            ? "text-red-600"
-                            : "text-yellow-600"
-                      }`}
-                    >
-                      {order.status}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-3">
-                  <Button
-                    size="sm"
-                    className="bg-green-600 hover:bg-green-700"
-                    onClick={() => handleAction(order.orderId, "accept")}
-                    disabled={loading}
-                  >
-                    Accept
-                  </Button>
-                  <Button
-                    size="sm"
-                    className="bg-red-600 hover:bg-red-700"
-                    onClick={() => handleAction(order.orderId, "reject")}
-                    disabled={loading}
-                  >
-                    Reject
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    onClick={() => handleDelete(order.orderId)}
-                    disabled={loading}
-                  >
-                    Delete
-                  </Button>
-                </div>
-
-                <div className="mt-4 text-sm text-gray-600">
-                  <p>
-                    Address: {order.address.street}, {order.address.city},{" "}
-                    {order.address.province}, {order.address.postalCode}
-                  </p>
-                  <p>Phone: {order.phone}</p>
-                </div>
-              </div>
-            ))}
-
-            {orders.length === 0 && !loading && (
-              <p className="text-sm text-gray-500">No orders found.</p>
-            )}
+                    </td>
+                    <td className="px-4 py-4">
+                      <span
+                        className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${
+                          order.status === "accepted"
+                            ? "bg-green-100 text-green-700"
+                            : order.status === "rejected"
+                              ? "bg-red-100 text-red-700"
+                              : "bg-yellow-100 text-yellow-700"
+                        }`}
+                      >
+                        {order.status}
+                      </span>
+                    </td>
+                    <td className="px-4 py-4">
+                      <div className="flex flex-wrap justify-end gap-2">
+                        {order.status !== "accepted" && (
+                          <Button
+                            size="xs"
+                            className="bg-green-600 hover:bg-green-700"
+                            onClick={() =>
+                              handleAction(order.orderId, "accept")
+                            }
+                            disabled={loading}
+                          >
+                            Accept
+                          </Button>
+                        )}
+                        {order.status !== "rejected" && (
+                          <Button
+                            size="xs"
+                            className="bg-red-600 hover:bg-red-700"
+                            onClick={() =>
+                              handleAction(order.orderId, "reject")
+                            }
+                            disabled={loading}
+                          >
+                            Reject
+                          </Button>
+                        )}
+                        <Button
+                          size="xs"
+                          variant="outline"
+                          onClick={() => handleDelete(order.orderId)}
+                          disabled={loading}
+                        >
+                          Delete
+                        </Button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
+
+          {filteredOrders.length === 0 && !loading && (
+            <p className="text-sm text-gray-500 mt-4">
+              No {activeTab} orders found.
+            </p>
+          )}
 
           {pagination && (
             <div className="mt-6 flex items-center justify-between text-sm text-gray-600">
